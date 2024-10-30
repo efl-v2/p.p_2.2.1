@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class User {
 
    @Id
-   @OneToOne()
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
@@ -21,15 +20,16 @@ public class User {
    private String email;
 
    @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "car")
+   @JoinColumn(name = "car_id")
    private Car userCar;
 
    public User() {}
    
-   public User(String firstName, String lastName, String email) {
+   public User(String firstName, String lastName, String email, Car userCar) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+      this.userCar = userCar;
    }
 
    public Long getId() {
